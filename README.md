@@ -11,4 +11,4 @@ The code here is a fully functional system, with a sample application, automated
 * Dockerfile for creating application containers
 * Jenkinsfile describing the whole delivery pipeline of the application
 
-To Jenkins configuration, please refer to the blog post.
+To Jenkins configuration, please refer to [the blog post](https://automatingguy.com/2017/11/06/jenkins-pipelines-simple-delivery-flow/).
