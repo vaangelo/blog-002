@@ -18,7 +18,7 @@ node('master') {
     }
 
     stage('Build') {
-        maven(maven : 'Maven_3.5.2'){
+        withMaven(maven: 'Maven 3') {
             dir('app') {
                 sh 'mvn clean package'
                 dockerCmd 'build --tag automatingguy/sparktodo:SNAPSHOT .'
@@ -48,7 +48,7 @@ node('master') {
         dockerCmd 'run -d -p 9999:9999 --name "snapshot" --network="host" automatingguy/sparktodo:SNAPSHOT'
 
         try {
-            maven(maven : 'Maven_3.5.2'){
+            withMaven(maven: 'Maven 3') {
                 dir('tests/bobcat') {
                     sh 'mvn clean test -Dmaven.test.failure.ignore=true'
                 }
@@ -64,7 +64,7 @@ node('master') {
     }
 
     stage('Release') {
-        maven(maven : 'Maven_3.5.2'){
+        withMaven(maven: 'Maven 3') {
             dir('app') {
                 releasedVersion = getReleasedVersion()
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
