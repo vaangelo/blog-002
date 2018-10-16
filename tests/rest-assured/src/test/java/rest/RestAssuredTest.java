@@ -14,7 +14,7 @@ public class RestAssuredTest {
 
   @Test
   public void canAddNewTodo() {
-    RestAssured.baseURI = "http://127.0.0.1:9999";
+    RestAssured.baseURI = "http://host.docker.internal:9999";
     String expectedTitle = "Yet another todo item";
     given().log().all()
         .formParam("todo-title", expectedTitle)
