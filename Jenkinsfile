@@ -69,7 +69,7 @@ node('master') {
             dir('app') {
                 releasedVersion = getReleasedVersion()
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
-                    sh "git config user.email test@automatingguy.com && git config user.name Jenkins"
+                    sh "git config user.email valentinoangeloni@libero.it && git config user.name Jenkins"
                     sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
                 }
                 dockerCmd "build --tag automatingguy/sparktodo:${releasedVersion} ."
