@@ -29,7 +29,7 @@ node('master') {
     stage('Deploy') {
         stage('Deploy') {
             dir('app') {
-                dockerCmd 'run -d -p 9999:9999 --name "snapshot" --network="host" automatingguy/sparktodo:SNAPSHOT'
+                dockerCmd 'run -d -p 9999:9999 --name "snapshot" automatingguy/sparktodo:SNAPSHOT'
             }
         }
     }
@@ -46,7 +46,7 @@ node('master') {
         }
 
         dockerCmd 'rm -f snapshot'
-        dockerCmd 'run -d -p 9999:9999 --name "snapshot" --network="host" automatingguy/sparktodo:SNAPSHOT'
+        dockerCmd 'run -d -p 9999:9999 --name "snapshot" automatingguy/sparktodo:SNAPSHOT'
 
         try {
             withMaven(maven: 'Maven 3') {
